@@ -1,5 +1,8 @@
 import socket
 
+#
+working = True
+
 # 1 + last 4 digits of student ID
 SERVER_PORT = 19489
 
@@ -23,7 +26,7 @@ if s.connect(("www.python.org", SERVER_PORT)):
 
 
 
-while True:
+while working:
     input = input()
     
 

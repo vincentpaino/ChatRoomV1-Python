@@ -16,8 +16,8 @@ serversocket.bind((socket.gethostname(), SERVER_PORT))
 serversocket.listen(5)
 
 # When we read the data from users.txt on the server start, we store it in two arrays respectively
-UserID=["","",""]
-Password=["","",""]
+UserIDs=[]
+Passwords=[]
 
 if serversocket:
     print("My chat room server. Version One.")
@@ -28,7 +28,7 @@ else:
 
 ### FUNCTIONS WRITTEN HERE ###
 
-def read_user_pass(UserID=UserID, Password=Password):
+
     
 
 
