@@ -6,7 +6,7 @@ SERVER_PORT = 19489
 # Use this when running client/server on the same device
 SERVER_IP = "127.0.0.1" 
 
-# create an INET, STREAMing socket
+# Initialize an INET, STREAMing socket
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # bind the socket to a public host, and a well-known port
@@ -23,10 +23,12 @@ if serversocket:
     print("My chat room server. Version One.")
     print("\n")
     
+# figure out the legit error message to return here...
 else:
     print("Error: Could not create server socket please retry again.")
 
-### FUNCTIONS WRITTEN HERE ###
+
+
 
 
     
