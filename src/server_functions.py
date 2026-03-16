@@ -35,11 +35,24 @@ def read_password(Passwords):
 def store_input_userID_and_password():
     return
 
+# Returns 2 if UserID and Password matches those stored in the array.
+def check_if_valid_userid_and_pass(UserID, Password, UserIDs, Passwords):
+    check = 0
+    for _ in UserIDs:
+        if _ in UserIDs:
+            check += 1
+    for _ in Passwords:
+        if _ in Passwords:
+            check += 1
+    return check
+        
+
 # s = server socket
 # BUFFER_SIZE = 256
 def login(s, BUFFER_SIZE):
     try:
-
+        
+        login_verification = check_if_valid_userid_and_pass(UserID, Password, UserIDs, Passwords)
     except ValueError as e:
         print(f"Error: {e}")
         return False
