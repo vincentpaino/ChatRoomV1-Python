@@ -1,37 +1,57 @@
-import socket
+"""
+Name: Vincent J. Paino
+Date Completed: 2026-03-20
+Program Description: This file holds the logic of a client-side socket in Python. Uses user input to communicate.
+"""
 
-#
-working = True
+import socket
+from client_functions import newuser, login, send, logout
+
+# Declare global variables
+# Logic to keep the program running until the user decides to exit
+# working = True
 
 # 1 + last 4 digits of student ID
 SERVER_PORT = 19489
 
-# Use this when running client/server on the same device
-SERVER_IP = "127.0.0.1" 
-
+# Max of 256 characters (fixed) to send a message
 BUFFER_SIZE = 256
 
-# Empty UserID and Password that are to be filled via user input
+# Use this server IP address when running client/server on the same device
+SERVER_IP = "127.0.0.1" 
+
+# Empty UserID and Password that are to be filled via user input in main logic
 UserID = ""
 Password = ""
 
-# create an INET, STREAMing socket
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# Global boolean variable to determine if the user logged in successfully or not
+is_logged_in = False
 
-# now connect to the web server on port 80 - the normal http port
-if s.connect(("www.python.org", SERVER_PORT)):
-    print("My chat room client. Version One.")
-    print("\n")
-    
+# Logic starts here
+# Create a socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
 
+# Connect to a server
+try:
+    s.connect((SERVER_IP, SERVER_PORT))
+    print("My chat room client. Version One.\n")
+except socket.error:
+    print("Failed to connect to server.\n")
+    s.close()
 
-
-while working:
+# Main program logic: while the socket is open, 
+# the client will wait for user input and send it to the server 
+while s:
     input = input()
-    
-
-### FUNCTIONS WRITTEN HERE ###
-# For login, user is expected to write a valid username and password in the form "username password" that matches with one tuple in users.txt. 
-# Whether this is successful or not, the server will respond with a message that is printed on the client side.
+    if input.startswith("newuser "):
+        newuser(input, is_logged_in, s)
+    elif input.startswith("login "):
+        login(input, is_logged_in, s)
+    elif input.startswith("send "):
+        send(input, is_logged_in, s, BUFFER_SIZE)
+    elif input.startswith("logout"):
+        logout(input, is_logged_in, s)
+    else:
+        print("Invalid command. Please try again.")
 
     
