@@ -9,7 +9,7 @@ the server side functions defined in server_functions.py.
 # The client first checks the correct usage of the command, and, if correct, sends the command to the server.
 # If the server can verify the UserID and the Password, the server will send a confirmation
 # message to the client; otherwise, the server will decline login and send an error message to the client.
-
+"""
 def is_logged_in(s, BUFFER_SIZE):
     try:
         s.sendall("is_logged_in".encode('utf-8'))
@@ -22,7 +22,7 @@ def is_logged_in(s, BUFFER_SIZE):
     except ValueError as e:
         print(f"Error: {e}")
         return False
-
+"""
 # Client side checks checks the correct usage of the command 
 # including correct lengths of UserID and Password
 # Length of UserID = 3-32 chars
